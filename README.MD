@@ -1,6 +1,6 @@
 ### Training
 
-See [AI toolkit](https://github.com/riolaf05/ai_obj_detection_cd/tree/develop/AI_development_environments/x86/ai_toolkit_elyra). Run on
+See [AI toolkit](https://github.com/riolaf05/ai_obj_detection_cd/tree/develop/AI_development_environments/x86/ai_toolkit_elyra).
 
 Copy tflite model into model folder
 
