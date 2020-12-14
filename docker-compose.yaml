@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+
+  backend:
+    build: ./flask/.
+    restart: always
+    volumes:
+      - ./flask/uploaded_photos:/api/static/uploads/
+      - ./flask/model:/model
+    command: ["gunicorn", "-w", "3", "-b", ":5000", "-t", "360", "--reload", "api.wsgi:app"]
+    networks:
+      - apinetwork
+    expose:
+      - "5000"
+    ports:
+      - "5001:5000"
+  
+networks:
+  apinetwork:
