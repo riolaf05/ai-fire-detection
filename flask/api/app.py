@@ -9,7 +9,7 @@ import numpy as np
 import cv2
 
 UPLOAD_FOLDER = '/api/static/uploads/'
-LABELS=['nessun incendio', 'incendio']
+LABELS=['incendio', 'nessun incendio']
 
 app = Flask(__name__)
 app.secret_key = "secret key"
