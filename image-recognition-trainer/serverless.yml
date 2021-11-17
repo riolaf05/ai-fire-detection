@@ -1,0 +1,36 @@
+service: poc-image-recognition
+
+provider:
+  name: aws
+  region: eu-west-1
+  profile: default
+  runtime: python3.6
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "s3:*"
+      Resource: 
+        - "arn:aws:s3:::image-recognition-input"
+        - "arn:aws:s3:::image-recognition-input/*"
+        - "arn:aws:s3:::image-recognition-output"
+        - "arn:aws:s3:::image-recognition-output/*"
+
+  ecr:
+    images:
+      dataprep:
+        path: ./src/dataprep
+      training:
+        path: ./src/training
+
+  functions:
+  dataprep:
+    image:
+      name: dataprep
+  training:
+    image:
+      name: training
+    environment:
+          AWS_KEY: ${opt:awsKey}
+          AWS_SECRET: ${opt:awsSecretKey}
+    events: 
+      - httpApi: 'GET /geturl'
